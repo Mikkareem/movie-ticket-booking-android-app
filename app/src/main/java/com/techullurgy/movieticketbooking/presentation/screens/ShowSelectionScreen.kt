@@ -33,6 +33,7 @@ import kotlinx.datetime.LocalDate
 fun ShowSelectionScreen(
     viewModel: ShowSelectionViewModel,
     navigateToBookSeatsScreen: (Long, Long, Long, String) -> Unit,
+    onBackButtonPressed: () -> Unit
 ) {
     val navController = rememberNavController()
 
@@ -56,7 +57,7 @@ fun ShowSelectionScreen(
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             Button(
-                onClick = { navController.popBackStack() }
+                onClick = onBackButtonPressed
             ) {
                 Text(text = "Back")
             }
@@ -64,7 +65,7 @@ fun ShowSelectionScreen(
             AnimatedVisibility(visible = showSelectionScreenState.selectedShow != null) {
                 Button(
                     onClick = {
-                        val theatreId = navController.currentBackStackEntry?.arguments?.getLong(NavigationConstant.THEATRE_ID)!!
+                        val theatreId = viewModel.getTheatreId()
                         val screenId = showSelectionScreenState.selectedScreen ?: -1
                         val bookableShowId = showSelectionScreenState.selectedShow ?: -1
                         val orderDateStr = showSelectionScreenState.dateList.elementAt(showSelectionScreenState.selectedDateIndex).toString()

@@ -134,6 +134,10 @@ class ShowSelectionViewModel(
             )
         }
     }
+
+    fun getTheatreId(): Long {
+        return savedStateHandle.get<Long>(NavigationConstant.THEATRE_ID)!!
+    }
 }
 
 data class ShowSelectionScreenState(

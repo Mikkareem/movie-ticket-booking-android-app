@@ -65,7 +65,11 @@ fun MainNavigation() {
 
             val viewModel = viewModel<ShowSelectionViewModel>()
 
-            ShowSelectionScreen(viewModel = viewModel, navigateToBookSeatsScreen = navigateToBookSeatsScreen)
+            ShowSelectionScreen(
+                viewModel = viewModel,
+                navigateToBookSeatsScreen = navigateToBookSeatsScreen,
+                onBackButtonPressed = navController::popBackStack
+            )
         }
 
         composable(
